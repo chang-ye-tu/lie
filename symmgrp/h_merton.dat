@@ -1,0 +1,25 @@
+/* Data file h_merton.dat for the Merton HJB equation */
+/* number of independent variables: */
+p: 2$
+
+/* number of dependent variables: */
+q: 1$
+
+/* number of equations in the system: */
+m: 1$
+
+warnings: false$
+parameters: [ggamma, rrho, bbeta, rr, eeta, aalpha, ssigma, c1, c2, c3]$
+sublisteqs: [all]$
+subst_deriv_of_vi: true$
+highest_derivatives: all$
+info_given: false$
+
+eta1: c3;
+depends(phi1, u[1]);
+depends(eta2, [x[1], x[2]]);
+
+assume(ggamma > 2);
+
+e1: (1 - ggamma)^2 / ggamma * exp(-1 * rrho * x[1]) * (exp(rrho * x[1]) * u[1, [0, 1]] / bbeta)^(ggamma / (ggamma - 1)) + u[1, [1, 0]] + ((1 - ggamma) * eeta / bbeta + rr * x[2]) * u[1, [0, 1]] - u[1, [0, 1]]^2 / u[1, [0, 2]] * (aalpha - rr)^2 / (2 * ssigma^2);
+v1: u[1, [1, 0]];
